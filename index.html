@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow | Gestión de Tareas</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <span class="hero__eyebrow">PROYECTO MÓDULO 5</span>
+      <h1>TaskFlow</h1>
+      <p>Organiza tus tareas, controla sus fechas límite y guarda tu progreso.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-labelledby="titulo-formulario">
+      <div class="panel__header">
+        <div>
+          <p class="panel__tag">Nueva tarea</p>
+          <h2 id="titulo-formulario">Crear o editar tarea</h2>
+        </div>
+        <button id="btnCargarApi" class="button button--secondary" type="button">
+          Cargar tareas desde API
+        </button>
+      </div>
+
+      <form id="formTarea" class="task-form">
+        <input type="hidden" id="tareaId">
+
+        <div class="field field--wide">
+          <label for="descripcion">Descripción</label>
+          <input
+            id="descripcion"
+            type="text"
+            maxlength="120"
+            placeholder="Ejemplo: Preparar presentación"
+            required
+          >
+          <small id="contadorCaracteres">0/120 caracteres</small>
+        </div>
+
+        <div class="field">
+          <label for="fechaLimite">Fecha límite</label>
+          <input id="fechaLimite" type="datetime-local" required>
+        </div>
+
+        <div class="field">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad">
+            <option value="baja">Baja</option>
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button id="btnGuardar" class="button button--primary" type="submit">Guardar tarea</button>
+          <button id="btnCancelar" class="button button--ghost" type="button" hidden>Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="summary" aria-label="Resumen de tareas">
+      <article class="summary__card">
+        <span>Total</span>
+        <strong id="totalTareas">0</strong>
+      </article>
+      <article class="summary__card">
+        <span>Pendientes</span>
+        <strong id="tareasPendientes">0</strong>
+      </article>
+      <article class="summary__card">
+        <span>Completadas</span>
+        <strong id="tareasCompletadas">0</strong>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="titulo-lista">
+      <div class="panel__header panel__header--stack">
+        <div>
+          <p class="panel__tag">Organización</p>
+          <h2 id="titulo-lista">Mis tareas</h2>
+        </div>
+
+        <div class="filters">
+          <input id="buscarTarea" type="search" placeholder="Buscar tarea..." aria-label="Buscar tarea">
+          <select id="filtroEstado" aria-label="Filtrar por estado">
+            <option value="todas">Todas</option>
+            <option value="pendiente">Pendientes</option>
+            <option value="completada">Completadas</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="mensajeEstado" class="status-message" role="status" aria-live="polite"></div>
+      <div id="listaTareas" class="task-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TaskFlow · Aplicación desarrollada con HTML, CSS y JavaScript ES6+</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
